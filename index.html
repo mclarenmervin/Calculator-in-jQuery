@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculator</h1>
+        <div class="calculator">
+            <button class="button" data-value="7">7</button>
+            <button class="button" data-value="8">8</button>
+            <button class="button" data-value="9">9</button>
+            <button class="button" data-value="+">+</button>
+            <button class="button" data-value="4">4</button>
+            <button class="button" data-value="5">5</button>
+            <button class="button" data-value="6">6</button>
+            <button class="button" data-value="-">-</button>
+            <button class="button" data-value="1">1</button>
+            <button class="button" data-value="2">2</button>
+            <button class="button" data-value="3">3</button>
+            <button class="button" data-value="*">*</button>
+            <button class="button" data-value="0">0</button>
+            <button class="button" id="clearButton">C</button>
+            <button class="button" id="calculateButton">=</button>
+            <button class="button" data-value="/">/</button>
+        </div>
+        <div id="display" style="margin-top: 20px;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var display = $('#display');
+
+            $('.button').on('click', function() {
+                var value = $(this).data('value');
+                display.append(value);
+            });
+
+            $('#clearButton').on('click', function() {
+                display.empty();
+            });
+
+            $('#calculateButton').on('click', function() {
+                try {
+                    var result = eval(display.text());
+                    display.text(result);
+                } catch (error) {
+                    display.text("Error");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
